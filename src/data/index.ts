@@ -23,7 +23,7 @@ export const registrationFormInputs:IRegistrationForm[] = [
         type: 'email'
     },
     {
-        id: 'userpassword',
+        id: 'userPassword',
         icon: {
             iconSrc: passwordIcon,
             iconAlt: 'Password icon',

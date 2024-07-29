@@ -23,7 +23,7 @@ form
 }
 form .inputContainer
 {
-    width: 60%;
+    width: 70%;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -63,8 +63,9 @@ form .inputContainer div img
 form .inputContainer div span
 {
     position: absolute;
-    bottom: -15px;
+    bottom: -20px;
     left: 0;
+    font-size: 14px;
     font-weight: 600;
     color: red;
 }
@@ -122,12 +123,18 @@ form .inputContainer div p span
 /* Small */
 @media (min-width:768px) and (max-width:991px)
 {
-
+    form .inputContainer
+    {
+        width: 90%;
+    }
 }
 /* Medium */
 @media (min-width:992px) and (max-width:1199px)
 {
-
+    form .inputContainer
+    {
+        width: 80%;
+    }
 }
 /* Large */
 @media (min-width:1200px)

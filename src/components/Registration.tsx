@@ -1,12 +1,83 @@
 import style from '../css/components/registration.module.css'
 import { registrationFormInputs } from '../data'
-import CheckBoxField from './ui/CheckBoxField'
-import PasswordField from './ui/PasswordField'
+import checkBox from '../assets/CheckBox.png'
+import doneCheckBox from '../assets/DoneCheckBox.png'
+import showPassword from '../assets/ShowPassword.png'
+import hidePassword from '../assets/HidePassword.png'
+import { useState } from 'react'
+import { IRegisterVali, IUserData } from '../interfaces'
+import registrationValidation from '../validation'
+
+
+
 
 export default function Registration() {
-    // ** States
+    // ** Defaults Data
+    const defaultUserData = {
+        userName: '',
+        userEmail: '',
+        userPassword: '',
+        passwordConfirm: ''
+    }
 
+
+
+
+
+    // ** States
+    const [checkBoxState,setCheckBoxState] = useState<boolean>(false);
+    const [passwordStates, setPasswordStates] = useState<{ [key: string]: boolean }>({
+        password: false,
+        passwordConfirm: false
+    });
+    const[user,setUser] = useState<IUserData>(defaultUserData);
+    const [errorMsgs,setErrorMsgs] = useState<IRegisterVali>(defaultUserData);
+    const [errorCheckBox,setErrorCheckBox] = useState<boolean>(false);
+
+
+
+
+    
     // ** Handlers
+    const handleCheckBoxState = ()=> setCheckBoxState(!checkBoxState);
+
+    const handlePasswordState = (field: string) => {
+        setPasswordStates(prevStates => ({
+            ...prevStates,
+            [field]: !prevStates[field]
+        }));
+    };
+
+    const handleOnChange = (event:React.ChangeEvent<HTMLInputElement>)=>{
+        const {name,value} = event.target;
+        setUser(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        setErrorMsgs({
+            ...errorMsgs,
+            [name]: ''
+        });
+    }
+
+    const handleSignUpWithEmail = ()=>{
+        const errors = registrationValidation({...user});
+        const hasErrors = Object.values(errors).every( error => error === '') && Object.values(errors).some( error => error === '');
+        if(!hasErrors)
+        {
+            setErrorMsgs(errors);
+            return;
+        }
+        if(checkBoxState)
+        {
+            setErrorCheckBox(!checkBoxState);
+            console.log(user);
+        }
+        else
+        {
+            setErrorCheckBox(!checkBoxState);
+        }
+    }
 
 
 
@@ -21,11 +92,14 @@ export default function Registration() {
             <div>
                 {
                     item.type === 'password' ?
-                    <PasswordField placeholder={item.placeholder} id={item.id}/>
+                    <>
+                            <img src={passwordStates[item.id] ? showPassword : hidePassword} alt="" onClick={() => handlePasswordState(item.id)}/>
+                            <input type={passwordStates[item.id] ? 'text' : 'password'} name={item.id} placeholder={item.placeholder} value={user[item.id]} id={item.id} onChange={handleOnChange}/>
+                        </>
                     :
-                    <input type={item.type} placeholder={item.placeholder} id={item.id}/>
+                    <input type={item.type} placeholder={item.placeholder} value={user[item.id]} name={item.id} id={item.id} onChange={handleOnChange}/>
                 }
-                <span></span>
+                <span>{errorMsgs[item.id]}</span>
             </div>
         </div>
     ))
@@ -40,11 +114,17 @@ export default function Registration() {
                 <form action="">
                     {renderFormInputs}
                     <div className={style.inputContainer}>
-                        <CheckBoxField/>
+                    <label htmlFor="">
+                        <img src={checkBoxState ? doneCheckBox : checkBox} alt="" onClick={handleCheckBoxState}/>
+                    </label>
+                    <div>
+                        <p>I have read and agree with <span>Terms of Service</span> and our <span>Privacy Polices</span></p>
+                        <span>{errorCheckBox && 'Read and agree the terms'}</span>
+                    </div>
                     </div>
                 </form>
                 <div className={style.formBtns}>
-                    <button>Sign up</button>
+                    <button onClick={handleSignUpWithEmail}>Sign up</button>
                     <button>Sign up with Google</button>
                 </div>
             </div>
