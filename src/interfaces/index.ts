@@ -23,3 +23,7 @@ export interface IRegisterVali{
     userPassword: string,
     passwordConfirm: string
 }
+
+
+
+

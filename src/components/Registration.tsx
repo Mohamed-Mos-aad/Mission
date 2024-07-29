@@ -7,6 +7,7 @@ import hidePassword from '../assets/HidePassword.png'
 import { useState } from 'react'
 import { IRegisterVali, IUserData } from '../interfaces'
 import registrationValidation from '../validation'
+import { signUpWithGoogle, signUpWithEmailPassword } from '../firebase/auth'
 
 
 
@@ -60,6 +61,7 @@ export default function Registration() {
         });
     }
 
+
     const handleSignUpWithEmail = ()=>{
         const errors = registrationValidation({...user});
         const hasErrors = Object.values(errors).every( error => error === '') && Object.values(errors).some( error => error === '');
@@ -68,15 +70,24 @@ export default function Registration() {
             setErrorMsgs(errors);
             return;
         }
+
         if(checkBoxState)
         {
+            
             setErrorCheckBox(!checkBoxState);
-            console.log(user);
+            signUpWithEmailPassword(user.userName,user.userEmail,user.userPassword);
+            setUser(defaultUserData);
+            setCheckBoxState(false);
         }
         else
         {
             setErrorCheckBox(!checkBoxState);
         }
+    }
+
+
+    const handleSignUpWithGoogle = ()=>{
+        signUpWithGoogle();
     }
 
 
@@ -125,7 +136,7 @@ export default function Registration() {
                 </form>
                 <div className={style.formBtns}>
                     <button onClick={handleSignUpWithEmail}>Sign up</button>
-                    <button>Sign up with Google</button>
+                    <button onClick={handleSignUpWithGoogle}>Sign up with Google</button>
                 </div>
             </div>
         </>
