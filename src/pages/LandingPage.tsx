@@ -9,7 +9,7 @@ import Login from '../components/Login';
 
 export default function LandingPage() {
     // ** States
-    const [userState,setUserState] = useState('registration');
+    const [userState,setUserState] = useState('welcome');
 
 
 

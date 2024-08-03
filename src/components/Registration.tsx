@@ -62,7 +62,7 @@ export default function Registration() {
     }
 
 
-    const handleSignUpWithEmail = ()=>{
+    const handleSignUpWithEmail = async ()=>{
         const errors = registrationValidation({...user});
         const hasErrors = Object.values(errors).every( error => error === '') && Object.values(errors).some( error => error === '');
         if(!hasErrors)
@@ -73,9 +73,16 @@ export default function Registration() {
 
         if(checkBoxState)
         {
-            
             setErrorCheckBox(!checkBoxState);
-            signUpWithEmailPassword(user.userName,user.userEmail,user.userPassword);
+            const isSignedUp = await signUpWithEmailPassword(user.userName, user.userEmail, user.userPassword);
+            if(!isSignedUp)
+            {
+                setErrorMsgs(prev => ({
+                    ...prev,
+                    userEmail: 'Email is already registered'
+                }));
+                return;
+            }
             setUser(defaultUserData);
             setCheckBoxState(false);
         }
