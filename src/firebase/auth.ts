@@ -1,6 +1,6 @@
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail, GoogleAuthProvider, signInWithPopup  } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup  } from "firebase/auth";
 import { auth, database } from "./firebaseConfig";
-import { ref, set } from "firebase/database";
+import { get, ref, set } from "firebase/database";
 import { UserData } from "./dataModels";
 
 const userData:UserData = {
@@ -32,17 +32,32 @@ const userData:UserData = {
 }
 
 
+export const isEmailRegisteredInDatabase = async (email: string): Promise<boolean> => {
+    try {
+    const dbRef = ref(database);
+    const snapshot = await get(dbRef);
+
+    if (snapshot.exists()) {
+        const users = snapshot.val();
+        for (const userId in users) {
+        if (users[userId].email === email) {
+            return true;
+        }
+        }
+        return false;
+    } else {
+        console.log("No data available");
+        return false;
+    }
+    } catch (error) {
+    console.error('Error checking email in database:', error.message);
+    return false;
+    }
+};
+
 
 export const signUpWithEmailPassword = async (userName: string, email: string, password: string) => {
     try {
-        // Check if the email is already registered
-        const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-        if (signInMethods.length > 0) {
-            // Email already registered
-            console.error('Email is already registered');
-            return false;
-        }
-
         // Create the user with email and password
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;

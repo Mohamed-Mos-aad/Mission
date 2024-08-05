@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import logo from '../assets/ConfirmCodeIcon.png'
 import style from '../css/pages/confirmEmail.module.css'
 import SuccessConfirmEmail from './../components/ui/SuccessConfirmEmail';
 import emailjs from '@emailjs/browser';
+import { signUpWithEmailPassword } from '../firebase/auth';
+import { DataContext } from '../store/index';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
+// ** Interface
 interface ITime
 {
     minutes: number,
@@ -18,11 +22,21 @@ interface ITime
 
 
 export default function ConfirmEmail() {
+    // ** Context
+    const {userData} = useContext(DataContext);
+
+
+
+
+
+
+
     // ** States
     const [successConfirm,setSuccessConfirm] = useState<boolean>(false);
     const [confirmCode,setConfirmCode] = useState<string>('');
     const [time,setTime] = useState<ITime>({minutes: 2,seconds:0});
     const [codeValue, setCodeValue] = useState<string>('');
+    const navigate = useNavigate();
 
 
 
@@ -52,6 +66,11 @@ export default function ConfirmEmail() {
                 seconds = 59;
             } else {
                 clearInterval(intervalTimer);
+                const sendBtn = document.getElementById('sendBtn') as HTMLElement | null;
+                sendBtn?.addEventListener('click', handleSentCode);
+                if(sendBtn) {
+                    sendBtn.style.cursor = 'pointer';
+                }
                 return { minutes: 2, seconds: 0 };
             }
             return { minutes, seconds };
@@ -70,6 +89,7 @@ export default function ConfirmEmail() {
             if(code  === confirmCode)
             {
                 setSuccessConfirm(true);
+                signUpWithEmailPassword(userData.userName,userData.userEmail,userData.userPassword);
             }
             else
             {
@@ -91,18 +111,20 @@ export default function ConfirmEmail() {
         {
             sendBtn.removeEventListener('click',handleSentCode);
             sendBtn.innerHTML = 'resend';
+            sendBtn.style.cursor =  'not-allowed';
         }
 
-        sendEmail('ma3268787@gmail.com', code);
+        sendEmail(userData.userEmail, code);
     }
-
-
-
 
 
 
     // ** useEffect
     useEffect(()=>{
+        if(userData.userEmail === '')
+        {
+            navigate('/Mission');
+        }
         const sendBtn = document.getElementById('sendBtn');
         sendBtn?.addEventListener('click', handleSentCode);
     })
@@ -118,6 +140,11 @@ export default function ConfirmEmail() {
             message: code
         }, '3PaUw5fPoj59Hzt83');
     };
+
+
+
+
+
 
     return (
         <>

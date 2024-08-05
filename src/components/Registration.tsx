@@ -4,15 +4,26 @@ import checkBox from '../assets/CheckBox.png'
 import doneCheckBox from '../assets/DoneCheckBox.png'
 import showPassword from '../assets/ShowPassword.png'
 import hidePassword from '../assets/HidePassword.png'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { IRegisterVali, IUserData } from '../interfaces'
 import registrationValidation from '../validation'
-import { signUpWithGoogle, signUpWithEmailPassword } from '../firebase/auth'
+import { signUpWithGoogle , isEmailRegisteredInDatabase} from '../firebase/auth'
+import { DataContext } from '../store'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function Registration() {
+    // ** useContext
+    const {setUserData} = useContext(DataContext);
+
+
+
+
+
+
+
     // ** Defaults Data
     const defaultUserData = {
         userName: '',
@@ -34,6 +45,7 @@ export default function Registration() {
     const[user,setUser] = useState<IUserData>(defaultUserData);
     const [errorMsgs,setErrorMsgs] = useState<IRegisterVali>(defaultUserData);
     const [errorCheckBox,setErrorCheckBox] = useState<boolean>(false);
+    const navigate = useNavigate();
 
 
 
@@ -62,10 +74,14 @@ export default function Registration() {
     }
 
 
+    
+
+    
     const handleSignUpWithEmail = async ()=>{
+
         const errors = registrationValidation({...user});
-        const hasErrors = Object.values(errors).every( error => error === '') && Object.values(errors).some( error => error === '');
-        if(!hasErrors)
+        const hasErrors = Object.values(errors).some(error => error !== '');
+        if(hasErrors)
         {
             setErrorMsgs(errors);
             return;
@@ -74,8 +90,8 @@ export default function Registration() {
         if(checkBoxState)
         {
             setErrorCheckBox(!checkBoxState);
-            const isSignedUp = await signUpWithEmailPassword(user.userName, user.userEmail, user.userPassword);
-            if(!isSignedUp)
+            const isSignedUp = await isEmailRegisteredInDatabase(user.userEmail);
+            if(isSignedUp)
             {
                 setErrorMsgs(prev => ({
                     ...prev,
@@ -83,6 +99,9 @@ export default function Registration() {
                 }));
                 return;
             }
+
+            setUserData({userEmail: user.userEmail,userName: user.userName,userPassword: user.userPassword});
+            navigate('/Mission/confirmEmail');
             setUser(defaultUserData);
             setCheckBoxState(false);
         }
