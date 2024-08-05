@@ -23,8 +23,8 @@ interface ITime
 
 export default function ConfirmEmail() {
     // ** Context
-    const {userData} = useContext(DataContext);
-
+    const context = useContext(DataContext);
+    const userData = context?.userData;
 
 
 
@@ -89,7 +89,10 @@ export default function ConfirmEmail() {
             if(code  === confirmCode)
             {
                 setSuccessConfirm(true);
-                signUpWithEmailPassword(userData.userName,userData.userEmail,userData.userPassword);
+                if(userData)
+                {
+                    signUpWithEmailPassword(userData.userName,userData.userEmail,userData.userPassword);
+                }
             }
             else
             {
@@ -114,14 +117,16 @@ export default function ConfirmEmail() {
             sendBtn.style.cursor =  'not-allowed';
         }
 
-        sendEmail(userData.userEmail, code);
+        if (userData) {
+            sendEmail(userData.userEmail, code);
+        }
     }
 
 
 
     // ** useEffect
     useEffect(()=>{
-        if(userData.userEmail === '')
+        if(!userData|| userData.userEmail === '')
         {
             navigate('/Mission');
         }

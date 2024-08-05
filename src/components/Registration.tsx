@@ -16,7 +16,8 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Registration() {
     // ** useContext
-    const {setUserData} = useContext(DataContext);
+    const context = useContext(DataContext);
+    const setUserData = context?.setUserData;
 
 
 
@@ -99,8 +100,10 @@ export default function Registration() {
                 }));
                 return;
             }
-
-            setUserData({userEmail: user.userEmail,userName: user.userName,userPassword: user.userPassword});
+            if(setUserData)
+            {
+                setUserData({userEmail: user.userEmail,userName: user.userName,userPassword: user.userPassword});
+            }
             navigate('/Mission/confirmEmail');
             setUser(defaultUserData);
             setCheckBoxState(false);

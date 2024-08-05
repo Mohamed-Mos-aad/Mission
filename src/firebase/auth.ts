@@ -50,8 +50,7 @@ export const isEmailRegisteredInDatabase = async (email: string): Promise<boolea
         return false;
     }
     } catch (error) {
-    console.error('Error checking email in database:', error.message);
-    return false;
+        return false;
     }
 };
 
