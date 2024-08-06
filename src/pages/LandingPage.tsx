@@ -9,7 +9,7 @@ import Login from '../components/Login';
 
 export default function LandingPage() {
     // ** States
-    const [userState,setUserState] = useState('welcome');
+    const [userState,setUserState] = useState('login');
 
 
 
@@ -55,7 +55,7 @@ export default function LandingPage() {
     const renderLogin = (
         <div className={style.welcome}>
             <Login/>
-            <p>If you already have an account. <span onClick={handleRegitration}>Log in</span></p>
+            <p>If you already don't have an account. <span onClick={handleRegitration}>Sign Up</span></p>
         </div>
     );
 

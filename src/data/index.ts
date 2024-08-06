@@ -1,4 +1,4 @@
-import { IRegistrationForm } from "../interfaces";
+import { ILogInForm, IRegistrationForm } from "../interfaces";
 import usernameIcon from '../assets/UserNameIcon.png'
 import mailIcon from '../assets/MailIcon.png'
 import passwordIcon from '../assets/PasswordIcon.png'
@@ -38,6 +38,28 @@ export const registrationFormInputs:IRegistrationForm[] = [
             iconAlt: 'Password icon',
         },
         placeholder: 'Password Confirm',
+        type: 'password'
+    }
+]
+
+export const logInFormInputs:ILogInForm[] =
+[
+    {
+        id: 'userEmail',
+        icon: {
+            iconSrc: mailIcon,
+            iconAlt: 'email icon',
+        },
+        placeholder: 'Email',
+        type: 'email'
+    },
+    {
+        id: 'userPassword',
+        icon: {
+            iconSrc: passwordIcon,
+            iconAlt: 'Password icon',
+        },
+        placeholder: 'Password',
         type: 'password'
     }
 ]

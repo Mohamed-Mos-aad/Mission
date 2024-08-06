@@ -26,4 +26,12 @@ export interface IRegisterVali{
 
 
 
-
+export interface ILogInForm{
+    id: 'userName' | 'userEmail' | 'userPassword' | 'passwordConfirm',
+    icon: {
+        iconSrc: string,
+        iconAlt: string
+    },
+    type: string,
+    placeholder: string,
+}

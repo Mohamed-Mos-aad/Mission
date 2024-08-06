@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup  } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup  } from "firebase/auth";
 import { auth, database } from "./firebaseConfig";
 import { get, ref, set } from "firebase/database";
 import { UserData } from "./dataModels";
@@ -66,7 +66,6 @@ export const signUpWithEmailPassword = async (userName: string, email: string, p
             ...userData,
             userName: userName,
             email: email,
-            password: password,
             photoURL: ''
         });
 
@@ -99,3 +98,54 @@ export const signUpWithGoogle = async () => {
     }
 };
     
+
+
+export const logInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+
+    try {
+        // Sign in with Google
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // Check if user data exists in the database
+        const dbRef = ref(database, user.uid);
+        const snapshot = await get(dbRef);
+        if (snapshot.exists()) {
+            // Return user data from the Realtime Database
+            console.log(snapshot.val());
+            return snapshot.val();
+        } 
+
+        return user;
+    } catch (error) {
+        console.error('Error logging in with Google:', error);
+        return null;
+    }
+};
+
+
+
+export const logInWithEmailPassword = async (email: string, password: string): Promise<UserData | null> => {
+    try {
+        // Sign in with email and password
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Reference to the user's data in the Realtime Database
+        const dbRef = ref(database, user.uid);
+        const snapshot = await get(dbRef);
+
+        if (snapshot.exists()) {
+            // Return user data from the Realtime Database
+            console.log(snapshot.val());
+            return snapshot.val();
+        } else {
+            console.log('User data not found in database.');
+            return null;
+        }
+    } catch (error) {
+        console.error('Error logging in with email and password:', error);
+        return null;
+    }
+};

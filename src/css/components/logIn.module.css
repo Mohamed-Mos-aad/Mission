@@ -1,0 +1,111 @@
+:root
+{
+    --main-color: #003694;
+    --second-color: #F7CB15;
+}
+
+
+/* Start LogIn */
+.loginContainer
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+form
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 0 25px;
+}
+form .inputContainer
+{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+form .inputContainer img
+{
+    width: 25px;
+    cursor: pointer;
+}
+form .inputContainer div
+{
+    width: 100%;
+    position: relative;
+}
+form .inputContainer div input
+{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px black;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+}
+form .inputContainer div input:focus
+{
+    outline: none;
+}
+form .inputContainer div img
+{
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    z-index: 10000;
+    cursor: pointer;
+}
+form .inputContainer div span
+{
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: red;
+}
+form .inputContainer div p
+{
+    font-size: 18px;
+    font-weight: 600;
+}
+form .inputContainer div p span
+{
+    position: static;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--main-color);
+}
+.formBtns
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+.formBtns button
+{
+    padding: 16px 32px;
+    background-color: var(--second-color);
+    border: none;
+    border-radius: 16px 0px 16px 16px;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.formBtns button:last-of-type
+{
+    background-color: transparent;
+    padding: 0;
+}
+/* End Registra
+/* End LogIn */
