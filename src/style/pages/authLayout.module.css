@@ -1,0 +1,115 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #F7CB15;
+}
+/* End Main Variables */
+
+
+
+
+
+/* Start AuthLayout */
+.authLayout_container
+{
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.auth_logo
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--main-color);
+    position: relative;
+}
+.auth_logo img
+{
+    width: 15%;
+}
+.auth_logo h1
+{
+    font-size: 65px;
+    font-weight: 700;
+    color: white;
+}
+.auth_logo span
+{
+    display: none;
+    position: absolute;
+    bottom: 25px;
+    color: white;
+    animation-name: arrowMove;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+.auth_component
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* End AuthLayout */
+
+
+
+
+/* Start Media Query */
+/* Extra Small */
+@media (max-width:767px)
+{
+    .authLayout_container
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .auth_logo img
+    {
+        width: 75px;
+    }
+    .auth_logo h1
+    {
+        font-size: 55px;
+    }
+    .auth_logo span
+    {
+        display: flex;
+    }
+}
+/* Small */
+@media (min-width:768px) and (max-width:991px)
+{
+    .auth_logo img
+    {
+        width: 85px;
+    }
+    .auth_logo h1
+    {
+        font-size: 60px;
+    }
+}
+/* End Media Query */
+
+
+
+
+
+/* Animations */
+@keyframes arrowMove
+{
+    0%{
+        opacity: 0;
+        bottom: 50px;
+    }
+    100%{
+        opacity: 1;
+        bottom: 25px;
+    }
+}

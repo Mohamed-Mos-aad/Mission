@@ -1,0 +1,101 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #F7CB15;
+}
+/* End Main Variables */
+
+
+
+
+
+/* Start Welcome Component */
+.welcome_component
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 75px;
+}
+.welcome_component h2
+{   
+    font-size: 100px;
+    font-weight: 600;
+    line-height: 100px;
+    letter-spacing: -5px;
+    color: var(--main-color);    
+}
+.welcome_btns
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.welcome_btns button
+{
+    padding:  16px 32px;
+    background-color: transparent;
+    border: none;
+    border-radius: 16px 0px 16px 16px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 20px;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.welcome_btns button:first-of-type
+{
+    background-color: var(--second-color);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+}
+.welcome_btns button:focus
+{
+    outline: none;
+}
+/* End Welcome Component */
+
+
+
+
+/* Start Media Query */
+/* Extra Small */
+@media (max-width:767px)
+{
+    .welcome_component
+    {
+        gap: 75px;
+    }
+    .welcome_component h2
+    {   
+        font-size: 65px;
+        line-height: 65px;
+    }
+}
+/* Small */
+@media (min-width:768px) and (max-width:991px)
+{
+    .welcome_component
+    {
+        gap: 75px;
+    }
+    .welcome_component h2
+    {   
+        font-size: 65px;
+        line-height: 65px;
+    }
+}
+/* Medium */
+@media (min-width:992px) and (max-width:1199px)
+{
+
+}
+/* Large */
+@media (min-width:1200px)
+{
+
+}
+/* End Media Query */
