@@ -7,7 +7,7 @@ import LogIn from "../components/auth/LogIn";
 export default function Routers() {
     return (
         <Routes>
-            <Route path="/Mission/" element={<AuthLayout />}>
+            <Route path="/" element={<AuthLayout />}>
                 <Route index element={<Welcome/>}/>
                 <Route path="login" element={<LogIn/>}/>
                 <Route path="registration" element={<Registration/>}/>
