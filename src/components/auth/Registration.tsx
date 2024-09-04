@@ -1,58 +1,154 @@
-import userNameIcon from '../../assets/UserNameIcon.png'
-import userEmailIcon from '../../assets/UserEmailIcon.png'
-import userPasswordIcon from '../../assets/UserPasswordIcon.png'
 import unCheckedBox from '../../assets/UnCheckedBox.png'
+import checkedBox from '../../assets/CheckedBox.png'
+import passwordShowIcon from '../../assets/PasswordShowIcon.png'
+import passwordHideIcon from '../../assets/PasswordHideIcon.png'
+
 import style from '../../style/components/registration.module.css'
+import { useState } from 'react'
+import { formInputs } from '../../data'
+import { useNavigate } from 'react-router-dom'
+import { InputValidation } from '../../validation'
+
+
+
+
+
+// ** Interfacecs
+interface IPasswordInputs{
+    password: boolean,
+    confirmPassword: boolean
+}
+interface IFormData{
+    userName: string;
+    userEmail: string;
+    userPassword: string;
+    userConfirmPassword: string;
+    termsAndPolicyReaded?: string
+}
+
+
+
+
 
 export default function Registration() {
+    // ** Defaults Data
+    const defaultFormData:IFormData = {
+        userName: '',
+        userEmail: '',
+        userPassword: '',
+        userConfirmPassword: ''
+    }
+    const defaultErrorMsgs = {
+        userName: '',
+        userEmail: '',
+        userPassword: '',
+        userConfirmPassword: '',
+        termsAndPolicyReaded: ''
+    }
+    const navigate = useNavigate();
+
+
+
+
+
+    
+    // ** States
+    const [passwordVisibility,setPasswordVisibility] = useState<IPasswordInputs>({
+        password: false,
+        confirmPassword: false
+    })
+    const [formData,setFormData]  = useState<IFormData>(defaultFormData);
+    const [errorMsgs,setErrorMsgs]  = useState<IFormData>(defaultErrorMsgs);
+    const [termsAndPolicyReaded,setTermsAndPolicyReaded] = useState<boolean>(false);
+
+
+
+
+
+    // ** Handlers
+    const passwordStateHandler = (name:keyof IPasswordInputs)=>{
+        setPasswordVisibility(prevState => ({
+            ...prevState,
+            [name]: !prevState[name],
+        }));
+    }
+    const FormValueHandler = (e:React.ChangeEvent<HTMLInputElement>)=>{
+        setFormData(prevState => ({
+            ...prevState,
+            [e.target.id]: e.target.value,
+        }));
+        setErrorMsgs(errors => ({
+            ...errors,
+            [e.target.id]: '',
+        }));
+    }
+
+    const submitHandler = ()=>{
+        const errors = InputValidation({...formData,termsAndPolicyReaded});
+        const hasErrorMsg = Object.values(errors).some(value => value === '') && Object.values(errors).every(value => value === '');
+        if(!hasErrorMsg)
+        {
+            setErrorMsgs(errors);
+            return
+        }
+
+            console.log(formData);
+            setFormData(defaultFormData);
+            setTermsAndPolicyReaded(!termsAndPolicyReaded);
+    }
+    const termAndPolicyReadHandler = ()=>{
+        setTermsAndPolicyReaded(!termsAndPolicyReaded);
+    }
+
+
+
+
+
+
+    // ** Renders 
+    const formInputsRender = formInputs.map(formInput => 
+        <div key={formInput.id}>
+            <label htmlFor={formInput.id}>
+                <img src={formInput.img.src} alt={formInput.img.alt} />
+            </label>
+            {formInput.type === 'password' ?
+                <>
+                    <input type={passwordVisibility[formInput.name === "userPassword" ? 'password' : 'confirmPassword']? 'text' : formInput.type} name={formInput.name} id={formInput.id} placeholder={formInput.placeholder} value={formData[formInput.name]} onChange={(e)=>{FormValueHandler(e)}}/>
+                    <span className={style.password_state}><img src={passwordVisibility[formInput.name === "userPassword" ? 'password' : 'confirmPassword']?  passwordHideIcon : passwordShowIcon} alt="Password state icon" onClick={()=>{passwordStateHandler(formInput.name === "userPassword" ? 'password' : 'confirmPassword')}}/></span>
+                </>
+                :
+                <input type={formInput.type} name={formInput.name} id={formInput.id} placeholder={formInput.placeholder} value={formData[formInput.name]} onChange={(e)=>{FormValueHandler(e)}}/>
+            }
+            <span className={style.validation_error}>{errorMsgs[formInput.name]}</span>
+        </div>
+    )
+
+
+    
+
+
+
     return (
         <>
             <div className={style.registration_container}>
                 <form>
-                    <div>
-                        <label htmlFor="userName">
-                            <img src={userNameIcon} alt="user name icon" />
-                        </label>
-                        <input type="text" name='userName' id='userName' placeholder='Username'/>
-                        <span className={style.validation_error}>Username must be between 3 and 20 characters.</span>
-                    </div>
-                    <div>
-                        <label htmlFor="userEmail">
-                            <img src={userEmailIcon} alt="user name icon" />
-                        </label>
-                        <input type="email" name='userEmail' id='userEmail' placeholder='Email'/>
-                        <span className={style.validation_error}>it must ended with  Ex : @gmail.com</span>
-                    </div>
-                    <div>
-                        <label htmlFor="userPassword">
-                            <img src={userPasswordIcon} alt="user name icon" />
-                        </label>
-                        <input type="password" name='userPassword' id='userPassword' placeholder='Password'/>
-                        <span className={style.validation_error}>Password must be between 3 and 20 characters.</span>
-                    </div>
-                    <div>
-                        <label htmlFor="userConfirmPassword">
-                            <img src={userPasswordIcon} alt="user name icon" />
-                        </label>
-                        <input type="password" name='userConfirmPassword' id='userConfirmPassword' placeholder='Confirm Password'/>
-                        <span className={style.validation_error}>Passwords do not match.</span>
-                    </div>
+                    {formInputsRender}
                     <div>
                         <label htmlFor="termsAndPolices">
-                            <img src={unCheckedBox} alt="user name icon" />
+                            <img src={termsAndPolicyReaded? checkedBox : unCheckedBox} alt="checkbox icon" onClick={termAndPolicyReadHandler}/>
                         </label>
                         <p id='termsAndPolices'>
                             I have read and agree with <span>Terms of Service</span> and our <span>Privacy Polices</span>
                         </p>
-                        <span className={style.validation_error}>You must agree to the Terms of Service and Privacy Policies.</span>
+                        <span className={style.validation_error}>{errorMsgs.termsAndPolicyReaded}</span>
                     </div>
                 </form>
                 <div className={style.btns_container}>
-                    <button>sign UP</button>
+                    <button onClick={submitHandler}>sign UP</button>
                     <button>Sign up with Google</button>
                 </div>
                 <div className={style.switch_component}>
-                    <p>If you already have an account. <span>Log in</span></p>
+                    <p>If you already have an account. <span onClick={()=>{navigate('/login')}}>Log in</span></p>
                 </div>
             </div>
         </>

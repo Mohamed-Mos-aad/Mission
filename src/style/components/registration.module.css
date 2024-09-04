@@ -28,6 +28,7 @@
     width: 50%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 25px;
 }
 .registration_container form div
@@ -77,9 +78,19 @@
 {
     outline: none;
 }
+.registration_container form div .password_state
+{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.registration_container form div .password_state img
+{
+    width: 25px;
+    cursor: pointer;
+}
 .registration_container form div .validation_error
 {
-    display: none;
     position: absolute;
     top: calc(100% + 2px);
     left: 33px;
@@ -102,7 +113,7 @@
     line-height: 18px;
     letter-spacing: -0.005em;
     color: var(--main-color);
-    cursor: pointer ;
+    cursor: pointer;
 }
 .btns_container
 {
@@ -149,3 +160,60 @@
     cursor: pointer;
 }
 /* End Registration Component */
+
+
+
+
+
+/* Start Media Query */
+/* Extra Small */
+@media (max-width:767px)
+{
+    .registration_container form
+    {
+        width: 100%;
+    }
+    .registration_container form div
+    {
+        width: 300px;
+    }
+    .registration_container form div p
+    {
+        font-size: 14px;
+    }
+    .registration_container form div p span
+    {
+        font-size: 16px;
+    }
+    .switch_component p
+    {
+        font-size: 14px;
+    }
+    .switch_component p span
+    {
+        font-size: 16px;
+    }
+}
+/* Small */
+@media (min-width:768px) and (max-width:991px)
+{
+    .registration_container form
+    {
+        width: 100%;
+    }
+    .registration_container form div
+    {
+        width: 300px;
+    }
+}
+/* Medium */
+@media (min-width:992px) and (max-width:1199px)
+{
+
+}
+/* Large */
+@media (min-width:1200px)
+{
+
+}
+/* End Media Query */
