@@ -19,7 +19,8 @@ export function InputValidation({userName,userEmail,userPassword,userConfirmPass
         userPassword: '',
         userConfirmPassword: '',
         termsAndPolicyReaded: ''
-    }
+    };
+
     const isValiEmail = gmailRegex.test(userEmail);
 
     if(!userName.trim() || userName.length < 3 || userName.length > 20)

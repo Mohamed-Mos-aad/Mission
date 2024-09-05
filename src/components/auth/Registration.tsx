@@ -12,7 +12,6 @@ import { InputValidation } from '../../validation'
 
 
 
-
 // ** Interfacecs
 interface IPasswordInputs{
     password: boolean,
@@ -72,6 +71,7 @@ export default function Registration() {
             [name]: !prevState[name],
         }));
     }
+
     const FormValueHandler = (e:React.ChangeEvent<HTMLInputElement>)=>{
         setFormData(prevState => ({
             ...prevState,
@@ -84,21 +84,31 @@ export default function Registration() {
     }
 
     const submitHandler = ()=>{
-        const errors = InputValidation({...formData,termsAndPolicyReaded});
-        const hasErrorMsg = Object.values(errors).some(value => value === '') && Object.values(errors).every(value => value === '');
-        if(!hasErrorMsg)
+        const errors = InputValidation({ ...formData, termsAndPolicyReaded });
+        const hasErrorMsg = Object.values(errors).some(value => value !== '');
+        if(hasErrorMsg)
         {
             setErrorMsgs(errors);
             return
         }
 
-            console.log(formData);
-            setFormData(defaultFormData);
-            setTermsAndPolicyReaded(!termsAndPolicyReaded);
+        resetFormInputsValuesHandler();
+        navigate('/confrim-email');
     }
+
+    const resetFormInputsValuesHandler = ()=>{
+        setFormData(defaultFormData);
+        setTermsAndPolicyReaded(false);
+    };
+
     const termAndPolicyReadHandler = ()=>{
         setTermsAndPolicyReaded(!termsAndPolicyReaded);
+        setErrorMsgs(prevState => ({
+            ...prevState,
+            termsAndPolicyReaded: '',
+        }));
     }
+
 
 
 
