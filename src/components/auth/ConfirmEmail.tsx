@@ -4,6 +4,7 @@ import successLogo from '../../assets/SuccessIcon.png'
 import style from '../../style/components/confirmEmail.module.css'
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../store';
 
 
 
@@ -20,6 +21,13 @@ interface ITime{
 
 
 export default function ConfirmEmail() {
+    // ** Context
+    const { registrationData } = useAppContext();
+
+
+
+
+
     // ** Defaults value
     let currentMinutes = 2;
     let currentSeconds = 0;
@@ -124,7 +132,6 @@ export default function ConfirmEmail() {
     };
 
 
-    const userEmail = 'ma3268787@gmail.com';
     const verificationCode = Math.floor(1000 + Math.random() * 9000);
 
     const sendEmailHandler = ()=>{
@@ -132,8 +139,8 @@ export default function ConfirmEmail() {
         const serviceId = 'service_e75s08c';
         const templateId = 'template_jsraclg';
         const templateParams = {
-            user_email: userEmail,
-            user_name: 'mohamed',
+            user_email: registrationData?.userEmail,
+            user_name: registrationData?.userName,
             message: verificationCode,
         };
         const publicKey = '3PaUw5fPoj59Hzt83';

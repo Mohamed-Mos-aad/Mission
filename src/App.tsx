@@ -1,12 +1,15 @@
 import { HashRouter } from 'react-router-dom';
 import Routers from './routers/index';
 import './App.css'
+import { AppContextProvider } from './store';
 
 
 function App() {
   return (
     <HashRouter>
-      <Routers />
+      <AppContextProvider>
+        <Routers />
+      </AppContextProvider>
     </HashRouter>
   )
 }

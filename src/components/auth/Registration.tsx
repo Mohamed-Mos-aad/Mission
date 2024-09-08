@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { formInputs } from '../../data'
 import { useNavigate } from 'react-router-dom'
 import { InputValidation } from '../../validation'
+import { useAppContext } from '../../store'
 
 
 
@@ -30,6 +31,15 @@ interface IFormData{
 
 
 export default function Registration() {
+    // ** Context
+    const { setRegistrationData } = useAppContext();
+
+
+
+
+
+
+
     // ** Defaults Data
     const defaultFormData:IFormData = {
         userName: '',
@@ -92,6 +102,10 @@ export default function Registration() {
             return
         }
 
+        setRegistrationData({
+            userName: formData.userName,
+            userEmail: formData.userEmail,
+        });
         resetFormInputsValuesHandler();
         navigate('/confrim-email');
     }
