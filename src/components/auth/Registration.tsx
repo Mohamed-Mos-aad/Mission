@@ -9,6 +9,7 @@ import { formInputs } from '../../data'
 import { useNavigate } from 'react-router-dom'
 import { InputValidation } from '../../validation'
 import { useAppContext } from '../../store'
+import { signInWithGoogle } from '../../firebase/auth'
 
 
 
@@ -105,6 +106,7 @@ export default function Registration() {
         setRegistrationData({
             userName: formData.userName,
             userEmail: formData.userEmail,
+            userPassword: formData.userPassword
         });
         resetFormInputsValuesHandler();
         navigate('/confrim-email');
@@ -121,6 +123,10 @@ export default function Registration() {
             ...prevState,
             termsAndPolicyReaded: '',
         }));
+    }
+
+    const registrationWithGoogleHandler = ()=>{
+        signInWithGoogle();
     }
 
 
@@ -169,7 +175,7 @@ export default function Registration() {
                 </form>
                 <div className={style.btns_container}>
                     <button onClick={submitHandler}>sign UP</button>
-                    <button>Sign up with Google</button>
+                    <button onClick={registrationWithGoogleHandler}>Sign up with Google</button>
                 </div>
                 <div className={style.switch_component}>
                     <p>If you already have an account. <span onClick={()=>{navigate('/login')}}>Log in</span></p>

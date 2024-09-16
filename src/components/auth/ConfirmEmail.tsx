@@ -5,6 +5,7 @@ import style from '../../style/components/confirmEmail.module.css'
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../store';
+import { registerWithEmailAndPassword } from '../../firebase/auth';
 
 
 
@@ -191,6 +192,10 @@ export default function ConfirmEmail() {
             else
             {
                 setConfirmEmailSuccess(true);
+                if(registrationData)
+                {
+                    registerWithEmailAndPassword(registrationData.userEmail,registrationData.userPassword,registrationData.userName);
+                }
             }
         }
     },[userInputCode]);

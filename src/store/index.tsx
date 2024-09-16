@@ -1,9 +1,10 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 // ** Interfaces
 interface RegistrationData {
     userName: string;
     userEmail: string;
+    userPassword: string;
 }
 interface AppContextType {
     registrationData: RegistrationData| null;
@@ -26,12 +27,7 @@ export const useAppContext = () => {
 export function AppContextProvider({ children }: { children: ReactNode }){
     const [registrationData, setRegistrationData] = useState<RegistrationData| null>(null);
 
-    useEffect(()=>{
-        if(registrationData)
-        {
-            console.log(registrationData);
-        }
-    },[registrationData])
+
 
     const appValues = { 
         registrationData, setRegistrationData 

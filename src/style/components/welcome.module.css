@@ -25,6 +25,7 @@
     font-weight: 600;
     line-height: 100px;
     letter-spacing: -5px;
+    text-align: left;
     color: var(--main-color);    
 }
 .welcome_btns
