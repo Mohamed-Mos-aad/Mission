@@ -5,7 +5,7 @@ import { getDatabase, Database } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAauKIpVgUTO7nW7vXUkGlLol7gW8JCc7M",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
     authDomain: "mission-70e9c.firebaseapp.com",
     databaseURL: "https://mission-70e9c-default-rtdb.firebaseio.com",
     projectId: "mission-70e9c",
@@ -14,6 +14,7 @@ const firebaseConfig = {
     appId: "1:278624071497:web:98acc5f5b5adfc6ac43498",
     measurementId: "G-6HQZRSYFS6"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
