@@ -5,7 +5,7 @@ import passwordHideIcon from '../../assets/PasswordHideIcon.png'
 
 import style from '../../style/components/registration.module.css'
 import { useState } from 'react'
-import { formInputs } from '../../data'
+import { registrationFormInputs } from '../../data'
 import { useNavigate } from 'react-router-dom'
 import { InputValidation } from '../../validation'
 import { useAppContext } from '../../store'
@@ -109,7 +109,7 @@ export default function Registration() {
             userPassword: formData.userPassword
         });
         resetFormInputsValuesHandler();
-        navigate('/confrim-email');
+        navigate('/confirm-email');
     }
 
     const resetFormInputsValuesHandler = ()=>{
@@ -136,7 +136,7 @@ export default function Registration() {
 
 
     // ** Renders 
-    const formInputsRender = formInputs.map(formInput => 
+    const formInputsRender = registrationFormInputs.map(formInput => 
         <div key={formInput.id}>
             <label htmlFor={formInput.id}>
                 <img src={formInput.img.src} alt={formInput.img.alt} />
