@@ -79,7 +79,7 @@ export default function NavBar() {
 
 
 
-    
+
     return (
         <>
             <nav className={`${isOpen? style.open : ''}`}>
@@ -87,7 +87,7 @@ export default function NavBar() {
                     <div className={style.main_icon}>
                         <img src={mainIcon.img.src} alt={mainIcon.img.alt} />
                     </div>
-                    <h2>{mainIcon.title}</h2>
+                    <h2>{isOpen? mainIcon.title : ''}</h2>
                 </div>
                 <div className={style.menu}>
                     <ul>

@@ -1,0 +1,231 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #F7CB15;
+}
+/* End Main Variables */
+
+
+
+
+
+/* Start Tasks Page */
+.tasksPage_container
+{
+    width: 100%;
+    min-height: 100vh;
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+.tasksPage_container header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tasksPage_container header .logo
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20.14px;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.tasksPage_container header .logo img
+{
+    width: 35px;
+}
+.page_setting
+{
+    cursor: pointer;
+}
+section
+{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+section h2
+{
+    font-size: 42px;
+    font-weight: 600;
+    text-align: left;
+}
+section p
+{
+    font-size: 24px;
+    font-weight: 500;
+}
+section h3
+{
+    font-size: 26px;
+    font-weight: 700;
+}
+.lists_container
+{
+    display: flex;
+    gap: 25px;
+}
+.lists_container .add_list
+{
+        min-width: 100px;
+        max-width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.lists_container .list
+{
+    min-width: 100px;
+    max-width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    position: relative;
+    z-index: -1;
+    background-color: #708d81;
+    padding: 8px 12px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.lists_container .list h4
+{
+    width: 50%;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24.06px;
+    color: white;
+}
+.lists_container .list::after
+{
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 0;
+    z-index: -1;
+    width: 35px;
+    height: 35px;
+    background-color: #708d81;
+    opacity: 0.5;
+    border-radius: 8px;
+}
+.lists_container .list::before
+{
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    width: 25px;
+    height: 25px;
+    background-color: #ffffff;
+    border-radius: 30px;
+}
+.tasks_container
+{
+    display: grid;
+    gap: 15px;
+}
+.displayGrid
+{
+    grid-template-columns: repeat(5,1fr);    
+}
+.displayList
+{
+    grid-template-columns: repeat(1,1fr);    
+}
+.task
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+.task img
+{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+.task label
+{
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.task:first-child
+{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    opacity: .5;
+    cursor: pointer;
+}
+.completed_container
+{
+    display: grid;
+    gap: 15px;
+}
+.completed_container .task
+{
+    opacity: .5;
+    text-decoration: line-through;
+}
+/* End Tasks Page */
+
+
+
+
+
+/* Start Media Query */
+/* Extra Small */
+@media (max-width:767px)
+{
+    .tasksPage_container
+    {
+        padding: 15px;
+    }
+    .page_setting
+    {
+        display: none;
+    }    
+    .lists_container
+    {
+        overflow-x: scroll;
+        padding: 10px 0;
+    }
+    .displayGrid
+    {
+        grid-template-columns: repeat(1,1fr);    
+    }
+}
+/* Small */
+@media (min-width:768px) and (max-width:991px)
+{
+    .displayGrid
+    {
+        grid-template-columns: repeat(2,1fr);    
+    }
+}
+/* Medium */
+@media (min-width:992px) and (max-width:1199px)
+{
+    .displayGrid
+    {
+        grid-template-columns: repeat(4,1fr);    
+    }
+}
+/* End Media Query */
