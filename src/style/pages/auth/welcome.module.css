@@ -1,0 +1,94 @@
+/* Start Variables */
+:root
+{
+    --main-color: #003694;
+    --button-color: #f7cb15;
+}
+/* End Variables */
+
+/* Start Welcome Page */
+.welcome_conatiner
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 50px;
+    padding: 50px;
+}
+.welcome_conatiner p
+{
+    font-size: 74px;
+    font-weight: 700;
+    color: var(--main-color);
+}
+.welcome_btns
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.welcome_btns button
+{
+    padding: 15px 30px;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px 0 15px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.welcome_btns button:first-of-type
+{
+    background-color: var(--button-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+/* End Welcome Page */
+
+
+
+
+
+/* Start Media Query */
+/* Extra Small */
+@media (max-width:767px)
+{
+    .welcome_conatiner
+    {
+        padding: 25px;
+    }
+    .welcome_conatiner p
+    {
+        font-size: 54px;
+        font-weight: 700;
+    }
+}
+/* Small */
+@media (min-width:768px) and (max-width:991px)
+{
+    .welcome_conatiner
+    {
+        padding: 25px;
+    }
+    .welcome_conatiner p
+    {
+        font-size: 64px;
+        font-weight: 700;
+    }
+}
+/* Medium */
+@media (min-width:992px) and (max-width:1199px)
+{
+
+}
+/* Large */
+@media (min-width:1200px)
+{
+
+}
+/* End Media Query */

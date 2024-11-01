@@ -15,12 +15,13 @@
 }
 .auth_side
 {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: var(--main-color);
-    gap: 25px;
+    gap: 10px;
 }
 .auth_side img
 {
@@ -28,8 +29,27 @@
 }
 .auth_side h1
 {
-    font-size: 68px;
+    font-size: 84px;
     font-weight: 600;
     color: white;
 }
 /* End Auth Layout */
+
+
+
+
+
+/* Start Media Query */
+/* Extra Small */
+@media (max-width:767px)
+{
+    .authLayout_container
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .auth_side h1
+    {
+        font-size: 10vw;
+    }
+}
+/* End Media Query */
