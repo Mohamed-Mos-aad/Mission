@@ -1,0 +1,35 @@
+/* Start Variables */
+:root
+{
+    --main-color: #003694;
+}
+/* End Variables */
+
+/* Start Auth Layout */
+.authLayout_container
+{
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.auth_side
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color);
+    gap: 25px;
+}
+.auth_side img
+{
+    width: 15%;
+}
+.auth_side h1
+{
+    font-size: 68px;
+    font-weight: 600;
+    color: white;
+}
+/* End Auth Layout */
