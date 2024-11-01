@@ -1,0 +1,118 @@
+/* Start Variables */
+:root
+{
+    --main-color: #003694;
+    --button-color: #f7cb15;
+    --error-color: #bf0603;
+}
+/* End Variables */
+
+/* Start Registration Page */
+.registration_container
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+form
+{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+form div
+{
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+}
+form div:last-of-type
+{
+    align-items: start;
+}
+form div img
+{
+    width: 20px;
+    cursor: pointer;
+}
+form div label
+{
+    display: flex;
+    align-items: center;
+}
+form div:last-of-type label
+{
+    margin-top: 5px;
+}
+form div input
+{
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px black;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 15px;
+}
+form div input:focus
+{
+    outline: none;
+}
+form div span
+{
+    position: absolute;
+    top: 100%;
+    left: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--error-color);
+}
+form div p a
+{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-color);
+    text-decoration: none;
+}
+.switch_auth p
+{
+    font-size: 14px;
+    font-weight: 500;
+}
+.switch_auth p a
+{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-color);
+    text-decoration: none;
+}
+.form_btns
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.form_btns button
+{
+    padding: 15px 30px;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px 0 15px 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.form_btns button:first-of-type
+{
+    background-color: var(--button-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+/* End Registration Page */
