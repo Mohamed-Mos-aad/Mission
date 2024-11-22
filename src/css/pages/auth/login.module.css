@@ -1,0 +1,153 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --border-color: #001427;
+    --error-color: #bf0603;
+    --main-text-color: #ffffff;
+    --second-text-color: #001427;
+}
+/* End Main Variables */
+
+
+
+/* Start Log In Page */
+.login_container
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.form_input
+{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+.form_input label
+{
+    display: flex;
+    align-items: center;
+}
+.form_input img
+{
+    width: 20px;
+    cursor: pointer;
+}
+.form_input:last-of-type img
+{
+    margin-top: -16px;
+}
+.form_input input
+{
+    width: 300px;
+    border: none;
+    border-bottom: solid 1px var(--border-color);
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.form_input input:focus
+{
+    outline: none;
+}
+.form_input p
+{
+    width: 300px;
+    font-size: 14px;
+    font-weight: 500;    
+}
+.form_input p a
+{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-color);
+    text-decoration: none;    
+}
+.form_input span
+{
+    position: absolute;
+    top: 100%;
+    left: 30px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--error-color);
+}
+.login_password
+{
+    text-align: end;
+}
+.login_password a
+{
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--second-text-color);
+}
+.login_btns
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+/* End Log In Page */
+
+
+
+
+
+
+
+
+/* Start Media Query */
+/* Extra small devices (phones, portrait) */
+@media (max-width: 575.98px) 
+{
+    .form_input input
+    {
+        width: 260px;
+    }
+    .form_input p
+    {
+        width: 260px;
+    }
+    .form_input span
+    {
+        font-size: 10px;
+    }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) 
+{
+
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) 
+{
+
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) 
+{
+
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) 
+{
+
+}
+/* End Media Query */

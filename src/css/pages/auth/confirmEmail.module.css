@@ -1,0 +1,131 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --border-color: #001427;
+    --error-color: #bf0603;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+
+/* Start Confirm Email Page */
+.confirm_container
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 67px;
+}
+.confirm_logo
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+.confirm_logo img 
+{
+    width: 120px;    
+}
+.confirm_logo .successIcon
+{
+    width: 200px;    
+}
+.confirm_logo h2
+{
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--main-color);
+}
+.confirm_container p
+{
+    width: 75%;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+}
+.confirm_code
+{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.code_inputs
+{
+    display: flex;
+    gap: 16px;
+}
+.code_inputs input
+{
+    width: 70px;
+    height: 70px;
+    border: none;
+    border-bottom: solid 2.5px var(--main-color);
+    font-size: 48px;
+    font-weight: 600;
+    text-align: center;
+}
+.code_inputs input:focus
+{
+    outline: none;
+}
+.confirm_timer
+{
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--main-color);
+    text-align: center;
+}
+/* End Confirm Email Page */
+
+
+
+
+
+/* Start Media Query */
+/* Extra small devices (phones, portrait) */
+@media (max-width: 575.98px) 
+{
+    .confirm_logo img 
+    {
+        width: 100px;    
+    }
+    .code_inputs input
+    {
+        width: 60px;
+        height: 60px;
+    }
+    .confirm_container p
+    {
+        width: 95%;
+    }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) 
+{
+    .confirm_container p
+    {
+        width: 80%;
+    }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) 
+{
+
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) 
+{
+
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) 
+{
+
+}
+/* End Media Query */

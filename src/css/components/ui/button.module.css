@@ -1,0 +1,31 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+
+
+
+/* Start Button Component */
+.customize_button
+{
+    padding: 16px 32px;
+    border: none;
+    border-radius: 16px 0 16px 16px;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-color);
+    cursor: pointer;
+}
+.uniqe_button
+{
+    background-color: var(--second-color);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+}
+/* End Button Component */

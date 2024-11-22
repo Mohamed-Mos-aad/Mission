@@ -1,0 +1,74 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+
+/* Start Auth Layout */
+.auth_container
+{
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.auth_logo
+{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--main-color);
+}
+.auth_logo img
+{
+    width: 120px;
+}
+.auth_logo h1
+{
+    font-size: 64px;
+    color: var(--main-text-color);
+}
+/* End Auth Layout */
+
+
+
+/* Start Media Query */
+/* Extra Small */
+@media (max-width:767px)
+{
+    .auth_container
+    {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .auth_logo img
+    {
+        width: 60px;
+    }
+    .auth_logo h1
+    {
+        font-size: 46px;
+    }
+}
+/* Small */
+@media (min-width:768px) and (max-width:991px)
+{
+
+}
+/* Medium */
+@media (min-width:992px) and (max-width:1199px)
+{
+
+}
+/* Large */
+@media (min-width:1200px)
+{
+
+}
+/* End Media Query */

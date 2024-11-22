@@ -1,0 +1,24 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+/* Start Auth Switch Component */
+.auth_switch p
+{
+    font-size: 14px;
+    font-weight: 500;
+}
+.auth_switch p a
+{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-color);
+    text-decoration: none;    
+}
+/* End Auth Switch Component */
