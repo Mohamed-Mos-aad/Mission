@@ -1,0 +1,91 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --border-color: #001427;
+    --error-color: #bf0603;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+
+/* Start Nav Bar component */
+.navBar_main_icon
+{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    z-index: 10000;
+}
+.page_icon
+{
+    width: 65px;
+    height: 65px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 65px;
+    cursor: pointer;
+}
+.page_icon img
+{
+    width: 30px;
+    filter: brightness(0) saturate(100%) invert(97%) sepia(96%) saturate(6%) hue-rotate(317deg) brightness(107%) contrast(100%);
+}
+nav h2
+{
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--main-color);
+    /* display: none; */
+}
+.nav_menu
+{
+    /* display: none; */
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    backdrop-filter: blur(10px);
+}
+.nav_menu ul
+{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: absolute;
+    bottom: 106px;
+    left: 25px;
+    list-style-type: none;
+}
+.nav_menu ul li
+{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.nav_menu ul li .page_icon
+{
+    width: 65px;
+    height: 65px;
+    background-color: var(--second-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 65px;
+    cursor: pointer;
+}
+.nav_menu ul li .page_icon img
+{
+    width: 30px;
+    filter: brightness(0) saturate(100%) invert(16%) sepia(94%) saturate(1841%) hue-rotate(206deg) brightness(95%) contrast(113%);
+}
+/* End Nav Bar component */

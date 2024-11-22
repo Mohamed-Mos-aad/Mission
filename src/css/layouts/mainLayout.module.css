@@ -1,0 +1,19 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+
+
+/* Start Main Layout */
+.mainLayout_container
+{
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+/* End Main Layout */
