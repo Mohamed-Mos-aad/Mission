@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    position: absolute;
+    position: fixed;
     bottom: 25px;
     left: 25px;
     z-index: 10000;
@@ -53,6 +53,7 @@ nav h2
     left: 0;
     z-index: 500;
     backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 .nav_menu ul
 {
