@@ -9,3 +9,13 @@ export interface IRegistrationFormInputs
     name: "userName" | "userEmail" | "userPassword" | "userConfirmPassword",
     placeholder: string
 }
+
+export interface INavMenu{
+    id: string,
+    path: string,
+    icon: {
+        src: string,
+        alt: string
+    },
+    name: string
+}
