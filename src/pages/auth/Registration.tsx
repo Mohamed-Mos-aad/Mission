@@ -13,6 +13,7 @@ import { registrationFormInputs } from '../../data/registrationForm';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { formValidation } from '../../validation';
+import { loginWithGoogle } from '../../firebase/authService';
 
 
 
@@ -88,6 +89,7 @@ export default function Registration() {
             setErrorMsgs(errors);
         }
     }
+    const signInWithGoogleHandler = ()=>{loginWithGoogle();}
 
 
 
@@ -126,7 +128,7 @@ export default function Registration() {
                 </form>
                 <div className={style.registration_btns}>
                     <Button title='Sign UP' uniqe={true} onClick={submitFormHandler}/>
-                    <Button title='Sign up with Google' uniqe={false}/>
+                    <Button title='Sign up with Google' uniqe={false} onClick={signInWithGoogleHandler}/>
                 </div>
                 <AuthSwitch toLogin={true}/>
             </div>
