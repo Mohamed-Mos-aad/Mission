@@ -3,12 +3,14 @@ import addIcon from '../../assets/addIcon.svg'
 import doneIcon from '../../assets/doneIcon.svg'
 import { useState } from 'react'
 import { tasksPageData } from '../../data/taskPageData'
+import AddTask from './../../components/tasks page/AddTask';
 
 
 
 export default function Tasks() {
     // ** States
     const [userData,setUserData] =  useState({...tasksPageData});
+    const [addTaskComponentShow,setAddTaskComponentShow] = useState<boolean>(false);
 
 
 
@@ -27,6 +29,9 @@ export default function Tasks() {
             }
         })
     }
+    const addTaskComponentShowHandler = ()=>{
+        setAddTaskComponentShow(true);
+    } 
 
 
 
@@ -76,11 +81,17 @@ export default function Tasks() {
                 Tasks
             </div>
             <div className={style.tasks_container}>
-                <div className={style.add_task}>
+                <div className={style.add_task} onClick={addTaskComponentShowHandler}>
                     write a task
                 </div>
                 {tasksRender}
             </div>
+            {
+                addTaskComponentShow && 
+                <div className={style.addTask_component}>
+                    <AddTask setAddTaskComponentShow={setAddTaskComponentShow} tasks={userData.tasks} setUserData={setUserData}/>
+                </div>
+            }
         </div>
         </>
     )

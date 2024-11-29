@@ -1,0 +1,76 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --border-color: #001427;
+    --error-color: #bf0603;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+
+/* Start Add Task component */
+.addTask_container
+{
+    width: 50%;
+    height: 50vh;
+    background-color: var(--main-color);
+    padding: 25px;
+    border-radius: 27px;
+    position: relative;
+}
+.addTask_container form
+{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.addTask_container form input
+{
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-text-color);
+}
+.addTask_container form input::placeholder
+{
+    color: var(--main-text-color);
+}
+.addTask_container form input:focus
+{
+    outline: none;
+}
+.addTask_container form textarea
+{
+    height: 25vh;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-text-color);
+    resize: none;
+}
+.addTask_container form textarea::placeholder
+{
+    color: var(--main-text-color);
+}
+.addTask_container form textarea:focus
+{
+    outline: none;
+}
+.done
+{
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+}
+.done img
+{
+    width: 25px;
+    cursor: pointer;
+}
+/* End Add Task component */
