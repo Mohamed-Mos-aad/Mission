@@ -40,7 +40,7 @@ export default function Tasks() {
     // ** Renders
     const listsRender = userData.lists.map((list)=>
         <div className={style.list} key={list.id}>
-            {list.title}
+            <h2>{list.title}</h2>
         </div>
     )
     const tasksRender = userData.tasks.map((task)=>

@@ -76,11 +76,8 @@
     display: flex;
     align-items: end;
     border-radius: 16px;
-    font-size: 20px;
-    font-weight: 600;
+    background-color: #4C5C55;
     padding: 15px 20px;
-    color: var(--main-text-color);
-    background-color: rgba(112, 141, 129, 1);
     cursor: pointer;
     position: relative;
     transition: 0.3s;
@@ -94,7 +91,7 @@
     position: absolute;
     top: -10px;
     left: 0;
-    background-color: rgba(112, 141, 129, 1);
+    background-color: #4C5C55;
     border-radius: 8px;
     opacity: 0.5;
     z-index: -1;
@@ -112,7 +109,19 @@
 }
 .lists_container .list:hover
 {
-    background-color: rgb(98, 124, 113);
+    background-color: #38433e;
+}
+.lists_container .list h2
+{
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-text-color);
 }
 .add_list
 {

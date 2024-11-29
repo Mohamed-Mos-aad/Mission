@@ -1,6 +1,14 @@
+// ** Style
 import style from '../../css/components/tasks page/addTask.module.css'
+// ** Assets
 import addIcon from '../../assets/task page/addIcon.svg'
+import calendarIcon from '../../assets/task page/calendarIcon.svg'
+import priorityIcon from '../../assets/task page/priorityIcon.svg'
+import listsIcon from '../../assets/task page/listsIcon.svg'
+import tagIcon from '../../assets/task page/tagIcon.svg'
+// ** Hooks
 import { useState } from 'react'
+// ** Other
 import { tasksPageData } from '../../data/taskPageData'
 
 
@@ -42,12 +50,14 @@ export default function AddTask({tasks,setUserData,setAddTaskComponentShow}:IAdd
         }));
     };
     const addTaskHandler = ()=>{
-        const newTasks = [task,...tasks];
-        
-        setUserData((prev)=>({
-            ...prev,
-            tasks: newTasks
-        }))
+        if(task.title !== '')
+        {
+            const newTasks = [task,...tasks];    
+            setUserData((prev)=>({
+                ...prev,
+                tasks: newTasks
+            }))
+        }
         setAddTaskComponentShow(false);
     }
 
@@ -65,8 +75,24 @@ export default function AddTask({tasks,setUserData,setAddTaskComponentShow}:IAdd
                     <input type="text" placeholder='What is  your task ?' onChange={(e)=>{valueChangeHandler('title',e)}}/>
                     <textarea placeholder='Note' onChange={(e)=>{valueChangeHandler('description',e)}}></textarea>
                 </form>
-                <div className={style.done}>
-                    <img src={addIcon} alt="Add Icon" onClick={addTaskHandler}/>
+                <div className={style.component_footer}>
+                    <div className={style.options}>
+                        <div className={style.options_item}>
+                            <img src={calendarIcon} alt="Calendar icon" />
+                        </div>
+                        <div className={style.options_item}>
+                            <img src={priorityIcon} alt="Priority icon" />
+                        </div>
+                        <div className={style.options_item}>
+                            <img src={listsIcon} alt="Lists icon" />
+                        </div>
+                        <div className={style.options_item}>
+                            <img src={tagIcon} alt="Tag icon" />
+                        </div>
+                    </div>
+                    <div className={style.done}>
+                        <img src={addIcon} alt="Add Icon" onClick={addTaskHandler}/>
+                    </div>
                 </div>
             </div>
         </>
