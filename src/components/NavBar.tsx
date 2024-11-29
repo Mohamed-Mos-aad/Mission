@@ -1,6 +1,6 @@
 // ** Style
 import style from '../css/components/navBar.module.css'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { navBarData } from '../data/navMenu'
 import { useNavigate } from 'react-router-dom';
 

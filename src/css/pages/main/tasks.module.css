@@ -30,7 +30,7 @@
 .welcome p
 {
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 500;
 }
 .title
 {
@@ -77,7 +77,7 @@
     border-radius: 16px;
     font-size: 20px;
     font-weight: 600;
-    padding: 20px;
+    padding: 15px 20px;
     color: var(--main-text-color);
     background-color: rgba(112, 141, 129, 1);
     cursor: pointer;
@@ -175,8 +175,8 @@
 .task .task_title h2
 {
     width: 100px;
-    flex-grow: 1; /* Let the title occupy remaining space */
-    flex-shrink: 1; /* Allow it to shrink if necessary */
+    flex-grow: 1;
+    flex-shrink: 1;
     flex-basis: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -221,6 +221,20 @@
     {
         grid-template-columns: repeat(1,1fr);
     }
+    .welcome h1
+    {
+        font-size: 32px;
+        font-weight: 600;
+    }
+    .welcome p
+    {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .title
+    {
+        font-size: 16px;
+    }
 }
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) 
@@ -228,6 +242,18 @@
     .tasks_container
     {
         grid-template-columns: repeat(2,1fr);
+    }
+    .welcome h1
+    {
+        font-size: 36px;
+    }
+    .welcome p
+    {
+        font-size: 15px;
+    }
+    .title
+    {
+        font-size: 18px;
     }
 }
 /* Medium devices (tablets, 768px and up) */
