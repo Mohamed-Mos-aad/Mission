@@ -1,0 +1,146 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --border-color: #001427;
+    --error-color: #bf0603;
+    --main-text-color: #ffffff;
+    --second-text-color: #fbfbfb;
+}
+/* End Main Variables */
+
+
+
+/* Start List Page */
+.list_container
+{
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.list_details
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    padding: 25px;
+    gap: 20px;
+}
+.list_details h2
+{
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--main-text-color);
+}
+.list_details p
+{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 26px;
+    color: var(--second-text-color);
+}
+.list_details .progressbar
+{
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.list_details .progressbar::before
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 0%;
+    height: 50px;
+    background-color: var(--second-color);
+}
+.list_details .progressbar::after
+{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 100%;
+    height: 50px;
+    background-color: var(--second-color);
+    opacity: 25%;
+}
+.progressbar_done
+{
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+    padding: 0 15px;
+}
+.progressbar_done span
+{
+    font-size: 16px;
+    font-weight: 600;
+}
+.progressbar_done span:first-of-type
+{
+    color: var(--main-color);
+}
+.progressbar_done span:last-of-type
+{
+    color: var(--main-text-color);
+}
+.tasks_list
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px;
+}
+.tasks_list .task
+{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tasks_list .task h3
+{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-color);
+}
+.tasks_list .task input
+{
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--main-color);
+}
+.tasks_list .task input:focus
+{
+    outline: none;
+}
+.tasks_list .task img
+{
+    width: 25px;
+    cursor: pointer;
+}
+.add_task
+{
+    opacity: 25%;
+}
+/* End List Page */
