@@ -19,15 +19,11 @@ interface Itask{
 
 export default function List() {
     const [listTasks, setListTasks] = useState<Itask[]>([]);
-    const [listProgress,setListProgress] = useState({
-        completed: 0,
-        uncompleted: 0
-    })
     const [listProgressPrec,setListProgressPrec] = useState({
         completedPrec: 0,
         unCompletedPrec: 100
     })
-    const root = document.querySelector(":root");
+    const root = document.querySelector(":root") as HTMLElement;
 
 
 
@@ -96,11 +92,7 @@ export default function List() {
     // ** UseEffect
     useEffect(() => {
         const completed = listTasks.filter((task) => task.done).length;
-        const uncompleted = listTasks.length - completed;
-
-        setListProgress({ completed, uncompleted });
-
-        // Update progress bar width
+        
         if (root) {
             const completedPercentage = (completed / listTasks.length) * 100;
             root.style.setProperty('--completed-width', `${completedPercentage}%`);
