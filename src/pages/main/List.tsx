@@ -4,22 +4,35 @@ import style from '../../css/pages/main/list.module.css'
 import checkBox from '../../assets/formCheckBox.svg'
 import checkedBox from '../../assets/formCheckedBox.svg'
 import addIcon from '../../assets/addIcon.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
+
+
+
+// ** Interfaces
+interface Itask{
+    id: string,
+    title: string | undefined,
+    done: boolean
+}
 
 
 export default function List() {
-    const [listTasks, setListTasks] = useState([
-        { id: '0', title: 'task title', done: false },
-        { id: '1', title: 'task title', done: false },
-        { id: '2', title: 'task title', done: false }
-    ]);
-
+    const [listTasks, setListTasks] = useState<Itask[]>([]);
+    const [listProgress,setListProgress] = useState({
+        completed: 0,
+        uncompleted: 0
+    })
+    const [listProgressPrec,setListProgressPrec] = useState({
+        completedPrec: 0,
+        unCompletedPrec: 100
+    })
+    const root = document.querySelector(":root");
 
 
 
     // Handlers
-    const taskStateToggleHandler = (e: React.MouseEvent<HTMLImageElement, MouseEvent>)=>{
+    const taskStateToggleHandler = (e: React.MouseEvent<HTMLImageElement, MouseEvent>,taskId:string)=>{
         const doneState = e.currentTarget.getAttribute('data-done');
         if(doneState === 'false')
         {
@@ -31,6 +44,14 @@ export default function List() {
             e.currentTarget.src = checkBox;
             e.currentTarget.setAttribute('data-done','false');
         }
+
+        setListTasks(prev =>
+            prev.map(task => 
+                task.id === taskId
+                    ? { ...task, done: !task.done }
+                    : task
+            )
+        );
     }
     const changeTaskTitleHandler = (e: React.ChangeEvent<HTMLInputElement>)=>{
         const newTitle = e.currentTarget.value;
@@ -42,7 +63,20 @@ export default function List() {
             return updatedList;
         });
     }
-
+    const addTaskHandler = ()=>{
+        const addTaskInput = document.getElementById('addTaskInput') as HTMLInputElement;
+        setListTasks((prev)=>{
+            const newTask = { id: listTasks.length.toString(), title: addTaskInput?.value, done: false }
+            addTaskInput.value = '';
+            return[...prev,newTask];
+        })
+    }
+    const addTaskByEnterHandler = (e: React.KeyboardEvent<HTMLInputElement>)=>{
+        if(e.key === 'Enter')
+        {
+            addTaskHandler();
+        }
+    } 
 
 
 
@@ -50,10 +84,33 @@ export default function List() {
     // ** Renders
     const listTasksRender = listTasks.map((task)=>(
         <div className={style.task} key={task.id}>
-            <img src={checkBox} data-done={task.done} alt="Check box icon" onClick={(e)=>{taskStateToggleHandler(e)}}/>
+            <img src={checkBox} data-done={task.done} alt="Check box icon" onClick={(e)=>{taskStateToggleHandler(e,task.id)}}/>
             <input type="text" value={task.title} id={task.id} onChange={(e)=>{changeTaskTitleHandler(e)}}/>
         </div>
     ))
+
+
+
+
+
+    // ** UseEffect
+    useEffect(() => {
+        const completed = listTasks.filter((task) => task.done).length;
+        const uncompleted = listTasks.length - completed;
+
+        setListProgress({ completed, uncompleted });
+
+        // Update progress bar width
+        if (root) {
+            const completedPercentage = (completed / listTasks.length) * 100;
+            root.style.setProperty('--completed-width', `${completedPercentage}%`);
+            setListProgressPrec({
+                completedPrec: Math.round(completedPercentage),
+                unCompletedPrec: 100 - Math.round(completedPercentage)
+            })
+        }
+    }, [listTasks]);
+
 
 
 
@@ -67,16 +124,18 @@ export default function List() {
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius recusandae est tenetur alias sequi eveniet dignissimos quod nam quisquam? Iste ab officia rerum, quaerat et reprehenderit consequuntur soluta voluptatem eveniet.</p>
                     <div className={style.progressbar}>
                         <div className={style.progressbar_done}>
-                            <span>0%</span>
-                            <span>100%</span>
+                            <span>{listProgressPrec.completedPrec > 0 ? listProgressPrec.completedPrec : 0}%</span>
+                            <span>{listProgressPrec.unCompletedPrec < 100 ? listProgressPrec.unCompletedPrec : 100}%</span>
                         </div>
                     </div>
                 </div>
                 <div className={style.tasks_list} id='listTasks'>
-                    {listTasksRender}
+                    <div className={style.tasks_container}>
+                        {listTasksRender}
+                    </div>
                     <div className={`${style.add_task} ${style.task}`}>
-                        <img src={addIcon} alt="Add icon" />
-                        <input type="text" placeholder='write a task'/>
+                        <img src={addIcon} alt="Add icon" onClick={addTaskHandler}/>
+                        <input type="text" placeholder='write a task' id='addTaskInput' onKeyUp={(e)=>{addTaskByEnterHandler(e)}}/>
                     </div>
                 </div>
             </div>
