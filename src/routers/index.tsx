@@ -21,7 +21,7 @@ export default function Routers() {
         </Route>
         <Route path="/u" element={<MainLayout />}>
             <Route index element={<Tasks />}/>
-            <Route path="list" element={<List />}/>
+            <Route path="list/:id" element={<List />}/>
         </Route>
     </Routes>
     )

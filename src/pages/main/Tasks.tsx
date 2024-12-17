@@ -4,10 +4,18 @@ import doneIcon from '../../assets/doneIcon.svg'
 import { useState } from 'react'
 import { tasksPageData } from '../../data/taskPageData'
 import AddTask from './../../components/tasks page/AddTask';
+import { useNavigate } from 'react-router-dom'
 
 
 
 export default function Tasks() {
+    // Deafults
+    const navigate = useNavigate();
+
+
+
+
+
     // ** States
     const [userData,setUserData] =  useState({...tasksPageData});
     const [addTaskComponentShow,setAddTaskComponentShow] = useState<boolean>(false);
@@ -29,17 +37,15 @@ export default function Tasks() {
             }
         })
     }
-    const addTaskComponentShowHandler = ()=>{
-        setAddTaskComponentShow(true);
-    } 
-
+    const addTaskComponentShowHandler = ()=>{setAddTaskComponentShow(true)} 
+    const openListHandler = (id:number)=>{navigate(`list/${id}`)};
 
 
 
 
     // ** Renders
     const listsRender = userData.lists.map((list)=>
-        <div className={style.list} key={list.id}>
+        <div className={style.list} key={list.id} onClick={()=>{openListHandler(list.id)}}>
             <h2>{list.title}</h2>
         </div>
     )

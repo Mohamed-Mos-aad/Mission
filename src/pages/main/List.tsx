@@ -5,6 +5,8 @@ import checkBox from '../../assets/formCheckBox.svg'
 import checkedBox from '../../assets/formCheckedBox.svg'
 import addIcon from '../../assets/addIcon.svg'
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { tasksPageData } from '../../data/taskPageData'
 
 
 
@@ -18,16 +20,22 @@ interface Itask{
 
 
 export default function List() {
+    const { id } = useParams<{ id: string }>();
+
+
+
+
+    // ** States
+    const [list,setList] =  useState(tasksPageData.lists[Number(id)]);
     const [listTasks, setListTasks] = useState<Itask[]>([]);
     const [listProgressPrec,setListProgressPrec] = useState({
         completedPrec: 0,
         unCompletedPrec: 100
     })
-    const root = document.querySelector(":root") as HTMLElement;
 
 
 
-    // Handlers
+    // ** Handlers
     const taskStateToggleHandler = (e: React.MouseEvent<HTMLImageElement, MouseEvent>,taskId:string)=>{
         const doneState = e.currentTarget.getAttribute('data-done');
         if(doneState === 'false')
@@ -73,6 +81,12 @@ export default function List() {
             addTaskHandler();
         }
     } 
+    const changeListTitleHandler = (e: React.ChangeEvent<HTMLInputElement>)=>{
+        setList(prev=>({
+            ...prev,
+            title: e.target.value
+        }))
+    }
 
 
 
@@ -93,15 +107,25 @@ export default function List() {
     useEffect(() => {
         const completed = listTasks.filter((task) => task.done).length;
         
-        if (root) {
-            const completedPercentage = (completed / listTasks.length) * 100;
-            root.style.setProperty('--completed-width', `${completedPercentage}%`);
-            setListProgressPrec({
-                completedPrec: Math.round(completedPercentage),
-                unCompletedPrec: 100 - Math.round(completedPercentage)
-            })
+        const completedPercentage = (completed / listTasks.length) * 100;
+        const doneProgress = document.getElementById(`${style.doneProgress}`);
+        const undoneProgress = document.getElementById(`${style.undoneProgress}`);
+        if(doneProgress)
+        {
+            doneProgress.style.width = `${completedPercentage}%`;
         }
+
+        if(undoneProgress)
+        {
+            undoneProgress.style.width = `${100 - completedPercentage}%`;
+        }
+
+        setListProgressPrec({
+            completedPrec: Math.round(completedPercentage),
+            unCompletedPrec: 100 - Math.round(completedPercentage)
+        })
     }, [listTasks]);
+
 
 
 
@@ -112,9 +136,11 @@ export default function List() {
         <>
             <div className={style.list_container}>
                 <div className={style.list_details}>
-                    <h2>List Title</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius recusandae est tenetur alias sequi eveniet dignissimos quod nam quisquam? Iste ab officia rerum, quaerat et reprehenderit consequuntur soluta voluptatem eveniet.</p>
+                    <input type="text" name="" id="" defaultValue={list.title} onChange={(e)=>{changeListTitleHandler(e)}}/>
+                    <textarea name="" id="" defaultValue='Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius recusandae est tenetur alias sequi eveniet dignissimos quod nam quisquam? Iste ab officia rerum, quaerat et reprehenderit consequuntur soluta voluptatem eveniet.'></textarea>
                     <div className={style.progressbar}>
+                        <div id={style.doneProgress}></div>
+                        <div id={style.undoneProgress}></div>
                         <div className={style.progressbar_done}>
                             <span>{listProgressPrec.completedPrec > 0 ? listProgressPrec.completedPrec : 0}%</span>
                             <span>{listProgressPrec.unCompletedPrec < 100 ? listProgressPrec.unCompletedPrec : 100}%</span>

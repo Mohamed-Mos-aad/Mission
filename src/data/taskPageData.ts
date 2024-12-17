@@ -3,11 +3,11 @@ export const tasksPageData = {
         name: "John Doe",
     },
     lists: [
-        { id: 1, title: "Work" },
-        { id: 2, title: "Personal" },
-        { id: 3, title: "Shopping" },
-        { id: 4, title: "Travel" },
-        { id: 5, title: "Fitness" },
+        { id: 0, title: "Work" },
+        { id: 1, title: "Personal" },
+        { id: 2, title: "Shopping" },
+        { id: 3, title: "Travel" },
+        { id: 4, title: "Fitness" },
     ],
     tasks: [
         {
