@@ -1,0 +1,187 @@
+/* Start Main Variables */
+:root
+{
+    --main-color: #003694;
+    --second-color: #f7cb15;
+    --border-color: #D0D5DD;
+    --error-color: #F05252;
+    --main-text-color: #ffffff;
+}
+/* End Main Variables */
+
+
+
+/* Start Registration Page */
+.registration_container
+{
+    width: 60%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: auto;
+}
+.sign_up_content
+{
+    text-align: center;
+}
+.sign_up_content h3
+{
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 58.09px;
+    color: var(--main-color);
+}
+.sign_up_content p
+{
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 40.8px;
+}
+.registration_container form
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 0 auto;
+}
+.registration_container .form_input
+{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+.registration_container .form_input h2
+{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+}
+.registration_container .form_input label
+{
+    display: flex;  
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 22px;
+    transform: translate(-50%,-50%);
+}
+.registration_container img
+{
+    cursor: pointer;
+}
+.registration_container .form_input input
+{
+    width: 100%;
+    border: solid 1px var(--border-color);
+    border-radius: 8px;
+    padding: 10px 15px 10px 44px;
+    font-size: 16px;
+    font-weight: 400;
+}
+.registration_container .form_input input:focus
+{
+    outline: none;
+}
+.registration_container span
+{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--error-color);
+}
+.form_checkBox
+{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+.form_checkBox p
+{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;    
+}
+.form_checkBox p a
+{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--main-color);
+    text-decoration: none;    
+}
+.registration_container .form_checkBox label
+{
+    position: relative;
+    left: 0;
+    top: 0;
+    transform: translate(0,0);
+}
+.registration_container .form_checkBox img
+{
+    margin-top: 4px;
+}
+.registration_container .registration_btns
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+/* End Registration Page */
+
+
+
+
+
+/* Start Media Query */
+/* Extra small devices (phones, portrait) */
+@media (max-width: 575.98px) 
+{
+    .registration_container
+    {
+        width: 100%;
+        padding: 0 10px;
+    }
+    .registration_container .form_input span
+    {
+        font-size: 10px;
+    }
+}
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) 
+{
+
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) 
+{
+    .registration_container
+    {
+        width: 75%;
+        padding: 0 10px;
+    }
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) 
+{
+
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) 
+{
+
+}
+/* End Media Query */
